@@ -10,3 +10,15 @@ export interface IRegisterUser{
     password:string;
     cpassword:string;
 }
+
+export interface ILoginResonse{
+    status:boolean;
+    data?:string;
+    message:string;
+}
+
+export interface IRegisterResponse{
+    status:boolean;
+    data?:string;
+    message:string;
+}

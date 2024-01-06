@@ -20,8 +20,6 @@ firstErrorMessage: string | null = null;
 
   checkValidators(){
     const error = this.control.errors
-    console.log(error);
-    
     if(!error){
  this.errorMessages = []
  return

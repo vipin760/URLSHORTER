@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { PasswordValidatorStrong } from 'src/app/shared/validator/passwordstrong';
 import { PasswordMatchValidator } from 'src/app/shared/validator/validators';
@@ -9,12 +12,15 @@ import { PasswordMatchValidator } from 'src/app/shared/validator/validators';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit, OnDestroy{
   registerForm!:FormGroup
   isSubmitted:boolean=false;
+  subscription!:Subscription;
   constructor(
     private fb :FormBuilder,
-    private userService:UserService
+    private userService:UserService,
+    private router :Router,
+    private toastrService:ToastrService
   ){}
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -35,6 +41,21 @@ get fc(){
 submit(){
 this.isSubmitted = true;
 if(this.registerForm.invalid) return
-this.userService.register(this.registerForm.value)
+this.subscription = this.userService.register(this.registerForm.value).subscribe(data=>{
+  if(data.status){
+    this.toastrService.success(`${data.message}`,'Success')
+    this.router.navigate(['login'])
+  }else{
+    this.toastrService.error(`${data.message}`,'Failed')
+    this.router.navigate(['register'])
+  }
+})
 }
+
+ngOnDestroy(): void {
+  if(this.subscription){
+    this.subscription.unsubscribe()
+  }
+}
+
 }

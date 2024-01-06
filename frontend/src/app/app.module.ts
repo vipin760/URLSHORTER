@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/pages/register/register.component';
@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InputContainerComponent } from './components/partials/input-container/input-container.component';
 import { InputValidatorComponent } from './components/partials/input-validator/input-validator.component'
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,18 @@ import { InputValidatorComponent } from './components/partials/input-validator/i
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut:3000,
+      positionClass:'toast-top-right',
+      newestOnTop:false
+    })
   ],
-  providers: [],
+  providers: [ 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
