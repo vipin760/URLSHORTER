@@ -1,1 +1,16 @@
-<p>register works!</p>
+<div class="container col-md-12 d-flex justify-content-center mt-5">
+    <div class="row col-md-4 p-4 shadow-lg">
+        <div class="col-md-12 text-center mb-3"><b>LOGIN</b></div>
+        <form [formGroup]="registerForm" action="" class="text-center align-items-between" >
+            <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['name']" placeholder="user name" type="text"></input-container>
+            <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['email']" placeholder="email" type="email" ></input-container>
+            <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['phone']" placeholder="Phone" type="text"></input-container>
+            <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['password']" placeholder="Password" type="password"></input-container>
+            <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['cpassword']" placeholder="Password" type="password"></input-container>
+            <div class="col-md-12 mt-1">
+                <a   (click)="submit()" class="btn btn-info">Register</a>
+            </div>
+        </form>
+    </div>
+</div>
+
