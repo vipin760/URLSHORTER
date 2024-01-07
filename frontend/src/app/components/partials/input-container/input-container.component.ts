@@ -12,6 +12,9 @@ export class InputContainerComponent {
   placeholder!:string
 
   @Input()
+  label!:string
+
+  @Input()
   control!:AbstractControl;
 
   @Input()

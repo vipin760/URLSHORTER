@@ -1,5 +1,42 @@
-<div class="container col-md-12 d-flex justify-content-center mt-5">
-    <div class="row col-md-4 p-4 shadow-lg">
+<div class="container">
+    <div class="col-md-12 mt-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card mb-3 col-md-12">
+                    <div class="row g-0">
+                      <div class="col-lg-4 d-none d-lg-flex">
+                        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" alt="Trendy Pants and Shoes"
+                          class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                      </div>
+                      <div class="col-lg-8">
+                        <div class="card-body py-5 px-md-5">
+                            <h1>Login</h1>
+                          <form  [formGroup]="loginForm" >
+                            <div class="form-outline mb-4">
+                                <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['email']" placeholder="example@gmail.com" type="email" label="Email"></input-container>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['password']" placeholder="password" type="password" label="Password"></input-container>
+                            </div>
+                            <div class="row mb-4">
+                              <div class="col">
+                                <a  [routerLink]="['/register']">create an account?</a>
+                              </div>
+                            </div>
+                            <a   (click)="submit()" class="btn btn-primary">Login</a>
+                          </form>
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container col-md-12 d-flex justify-content-center mt-5">
+    <div class="row col-md-4 p-4 mt-4 shadow-lg">
         <div class="col-md-12 text-center mb-3"><b>LOGIN</b></div>
         <form [formGroup]="loginForm" action="" class="text-center align-items-between" >
             <input-container [showErrorWhen]="isSubmitted"  [control]="this.fc['email']" placeholder="example@gmail.com" type="email"></input-container>
@@ -13,4 +50,4 @@
         </div>
     </div>
 </div>
-
+ -->
