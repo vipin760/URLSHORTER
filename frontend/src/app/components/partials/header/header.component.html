@@ -7,8 +7,8 @@
       <div class="collapse navbar-collapse col-md-6" id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-lg-0 col-md-12 d-flex justify-content-center">
           <li class="nav-item">
-            <a class="nav-link active" class="btn btn-info" aria-current="page" [routerLink]="['login']" >Login</a>
-            <a class="nav-link active" class="btn btn-success" *ngIf="token" aria-current="page" [routerLink]="['register']">Logout</a>
+            <a class="nav-link active" class="btn btn-info" *ngIf="!token" aria-current="page" [routerLink]="['login']" >Login</a>
+            <a class="nav-link active" class="btn btn-success" *ngIf="token" aria-current="page" (click)="logout()">Logout</a>
           </li>
         </ul>
       </div>

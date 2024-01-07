@@ -13,7 +13,7 @@ export interface IRegisterUser{
 
 export interface ILoginResonse{
     status:boolean;
-    data?:string;
+    data:string;
     message:string;
 }
 

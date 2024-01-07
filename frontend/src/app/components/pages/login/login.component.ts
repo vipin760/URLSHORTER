@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
+import { ILoginResonse } from 'src/app/shared/interface/IUser';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +17,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
-    private userService:UserService
-  ){}
+    private userService:UserService,
+    private toastrService:ToastrService,
+    private router : Router,
+  ){
+  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -30,7 +37,14 @@ export class LoginComponent implements OnInit {
   submit(){
     this.isSubmitted=true
     if(this.loginForm.invalid) return
-    this.userService.login(this.loginForm.value)
+    this.userService.login(this.loginForm.value).subscribe((data)=>{
+      if(data.status){
+        this.toastrService.success(`${data.message}`,"Success")
+        this.router.navigate(['home'])
+      }else{
+        this.toastrService.success(`${data.message}`,"Failed")
+      }
+    })
     
   }
 
