@@ -7,12 +7,12 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { LoginComponent } from './components/pages/login/login.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
-import { HomeComponent } from './components/pages/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InputContainerComponent } from './components/partials/input-container/input-container.component';
 import { InputValidatorComponent } from './components/partials/input-validator/input-validator.component'
 import { ToastrModule } from 'ngx-toastr';
+import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
     InputContainerComponent,
-    InputValidatorComponent
+    InputValidatorComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -32,12 +32,12 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut:3000,
-      positionClass:'toast-top-right',
-      newestOnTop:false
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      newestOnTop: false
     })
   ],
-  providers: [ 
+  providers: [
   ],
   bootstrap: [AppComponent]
 })
