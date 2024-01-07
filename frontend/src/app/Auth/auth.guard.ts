@@ -10,8 +10,6 @@ export class userGuard implements CanActivate {
 
   canActivate(): boolean {
     const token = localStorage.getItem(USER_KEY);
-    console.log("token",token);
-    
     if (token) {
       return true;
     } else {

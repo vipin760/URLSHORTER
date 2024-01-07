@@ -9,3 +9,7 @@ export class CreateUserLoginDto{
  email:string;
  password:string;
 }
+
+export class CreateUrlDto{
+    urlFull:string
+}

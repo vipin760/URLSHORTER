@@ -26,6 +26,13 @@ model User {
   posts    Post[]
 }
 
+model Url {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  full  String
+  short String
+  clicks Int
+}
+
 model Comment {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   comment String

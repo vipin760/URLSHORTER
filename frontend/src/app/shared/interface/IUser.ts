@@ -22,3 +22,11 @@ export interface IRegisterResponse{
     data?:string;
     message:string;
 }
+export interface IUrlShortResponse{
+    status:boolean;
+    message:string;
+}
+
+export interface IUrlData{
+    urlFull:string;
+}

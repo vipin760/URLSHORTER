@@ -1,9 +1,10 @@
 import { HttpException, HttpStatus, Injectable, Res } from '@nestjs/common';
-import { CreateUserDto, CreateUserLoginDto } from './dto/create-user.dto';
+import { CreateUrlDto, CreateUserDto, CreateUserLoginDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
+import shortId from 'shortid'
 
 @Injectable()
 export class UsersService {
@@ -52,6 +53,22 @@ async login(createUserDto:CreateUserLoginDto){
   }
 }
 
+async urlShort(createUrlDto:CreateUrlDto){
+  try {
+     const shortUrl = shortId.generate();
+    
+    const saveUrl = await this.prisma.Url.create({
+      data:{full:createUrlDto.urlFull, short:shortUrl,clicks:0}
+    })
+    if(saveUrl){
+      return {status:true, message:"url shoted successfully", statusCode:HttpStatus.OK}
+    }
+   
+    
+  } catch (error) {
+    throw new HttpException({ status: false, message: 'Internal server down' }, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+}
 
   findAll() {
     return `This action returns all users`;

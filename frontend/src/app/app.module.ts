@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { HeaderComponent } from './components/partials/header/header.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +18,6 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HeaderComponent,
     FooterComponent,
     InputContainerComponent,
     InputValidatorComponent,
@@ -37,6 +35,7 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
       newestOnTop: false
     })
   ],
+  exports:[InputContainerComponent,InputValidatorComponent],
   providers: [
   ],
   bootstrap: [AppComponent]
