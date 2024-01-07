@@ -7,11 +7,12 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { LoginComponent } from './components/pages/login/login.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InputContainerComponent } from './components/partials/input-container/input-container.component';
 import { InputValidatorComponent } from './components/partials/input-validator/input-validator.component'
 import { ToastrModule } from 'ngx-toastr';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
+import { UserTokenInterceptorService } from './interceptors/user.interceptors';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
   ],
   exports:[InputContainerComponent,InputValidatorComponent],
   providers: [
+    {provide:HTTP_INTERCEPTORS, useClass:UserTokenInterceptorService,multi:true}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,5 @@
+import { HttpStatus } from "@nestjs/common";
+
 export class CreateUserDto {
     name:string;
     email:string;
@@ -12,4 +14,16 @@ export class CreateUserLoginDto{
 
 export class CreateUrlDto{
     urlFull:string
+}
+export class ListUrl{
+    id?:string;
+    full:string;
+    short: string;
+    clicks:number;  
+}
+export class ListUrlResponse{
+    status:boolean;
+    data:ListUrl;
+    message:string;
+    statusCode?:HttpStatus
 }

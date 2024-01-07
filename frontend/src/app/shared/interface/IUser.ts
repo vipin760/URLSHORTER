@@ -24,9 +24,27 @@ export interface IRegisterResponse{
 }
 export interface IUrlShortResponse{
     status:boolean;
+    data:string;
     message:string;
 }
 
 export interface IUrlData{
     urlFull:string;
 }
+
+export interface IListUrl{
+    id?:string;
+    full:string;
+    short: string;
+    clicks:number;  
+}
+export interface IListUrlResponse{
+    status:boolean;
+    data:IListUrl[];
+    message:string;
+}
+export interface IFetchUrlResponse{
+    status:boolean;
+    data:IListUrl;
+    message:string;
+} 

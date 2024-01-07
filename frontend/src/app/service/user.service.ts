@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ILoginResonse, ILoginUser, IRegisterResponse, IRegisterUser, IUrlData, IUrlShortResponse } from '../shared/interface/IUser';
+import { IFetchUrlResponse, IListUrlResponse, ILoginResonse, ILoginUser, IRegisterResponse, IRegisterUser, IUrlData, IUrlShortResponse } from '../shared/interface/IUser';
 import { USER_BASE_URI } from '../shared/constants/url';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -53,8 +53,15 @@ logout(){
   window.location.reload()
 } 
 ///////////////////////////////////////////////////////////  
-urllshort(urlData:IUrlData):Observable<IUrlShortResponse>{
+urlShort(urlData:IUrlData):Observable<IUrlShortResponse>{
+  
  return this.Http.post<IUrlShortResponse>(`${USER_BASE_URI}/urlshort`,urlData)
 }
-///////////////////////////////////////////////////////////  
+///////////////////////////////////////////////////////////
+fetchUrl(urlData:string):Observable<IFetchUrlResponse>{
+ return this.Http.get<IFetchUrlResponse>(`${USER_BASE_URI}/fetchUrl/${urlData}`)
+}
+///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
 }

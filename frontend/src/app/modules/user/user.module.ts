@@ -5,6 +5,9 @@ import { UserComponent } from './user.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ClipboardModule } from '@angular/cdk/clipboard'
+import { MatButtonModule } from '@angular/material/button'
+import { MatInputModule } from '@angular/material/input'
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule,
+    MatButtonModule,
+    MatInputModule
   ]
 })
 export class UserModule { }
