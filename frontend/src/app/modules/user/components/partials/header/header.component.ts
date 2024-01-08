@@ -7,18 +7,18 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  token!:string;
+  token!: string;
 
   ///////////////////////////////////////////////////////////  
   constructor(
-    private userService:UserService
-  ){
-    this.userService.UserObservable.subscribe(newToken=>{
+    private userService: UserService
+  ) {
+    this.userService.UserObservable.subscribe(newToken => {
       this.token = newToken
     })
   }
   ///////////////////////////////////////////////////////////  
-  logout(){
+  logout() {
     this.userService.logout()
   }
   ///////////////////////////////////////////////////////////  

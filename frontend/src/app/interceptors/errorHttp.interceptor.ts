@@ -5,21 +5,20 @@ import { Observable, catchError, tap, throwError } from "rxjs";
 
 
 @Injectable({
-    providedIn:'root'
+    providedIn: 'root'
 })
 
-export class HttpErrorInterceptorService implements HttpInterceptor{
+export class HttpErrorInterceptorService implements HttpInterceptor {
     constructor(
-        private toastrService:ToastrService
-    ){}
+        private toastrService: ToastrService
+    ) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
-            catchError((error:HttpErrorResponse)=>{
+            catchError((error: HttpErrorResponse) => {
                 this.toastrService.error(error.error)
-                console.log("interceptor",error.error);
                 return throwError(error.error)
             })
         )
-        
+
     }
 }

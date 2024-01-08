@@ -7,11 +7,11 @@ import { userGuard } from './Auth/auth.guard';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 
 const routes: Routes = [
-  {path:'login', component:LoginComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'',canActivate:[userGuard],component:AppComponent, loadChildren:()=>import('../app/modules/user/user.module').then(com => com.UserModule)},
-  {path:'**',component:NotFoundComponent}
-  
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', canActivate: [userGuard], component: AppComponent, loadChildren: () => import('../app/modules/user/user.module').then(com => com.UserModule) },
+  { path: '**', component: NotFoundComponent }
+
 ];
 
 @NgModule({

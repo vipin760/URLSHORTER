@@ -7,14 +7,16 @@ import { HeaderComponent } from './components/partials/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from '@angular/cdk/clipboard'
 import { MatButtonModule } from '@angular/material/button'
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import { FooterComponent } from './components/partials/footer/footer.component'
 
 
 @NgModule({
   declarations: [
     UserComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

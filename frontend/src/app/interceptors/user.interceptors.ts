@@ -8,18 +8,18 @@ import { USER_KEY } from "../shared/constants/key";
     providedIn: 'root'
 })
 
-export class UserTokenInterceptorService implements HttpInterceptor{
+export class UserTokenInterceptorService implements HttpInterceptor {
 
-    constructor(){}
+    constructor() { }
     intercept(_req: HttpRequest<any>, _next: HttpHandler): Observable<HttpEvent<any>> {
-       const tokenData = localStorage.getItem(USER_KEY)
-       const token = tokenData?JSON.parse(tokenData):''
-       
+        const tokenData = localStorage.getItem(USER_KEY)
+        const token = tokenData ? JSON.parse(tokenData) : ''
+
         let jwttoken = _req.clone({
-            setHeaders:{
-                'Authorization':token ? token :''
+            setHeaders: {
+                'Authorization': token ? token : ''
             }
         })
         return _next.handle(jwttoken)
-    } 
+    }
 }

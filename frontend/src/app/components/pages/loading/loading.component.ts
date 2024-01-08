@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { LoadingService } from 'src/app/service/loading.service';
 
 @Component({
@@ -6,15 +7,22 @@ import { LoadingService } from 'src/app/service/loading.service';
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.css']
 })
-export class LoadingComponent {
-  isLoading!:boolean;
-
+export class LoadingComponent implements OnDestroy {
+  isLoading!: boolean;
+  subscription!: Subscription;
+  ////////////////////////////////////////////////////////////////////////
   constructor(
     private loadingService: LoadingService
-  ){
-    loadingService.isLoading.subscribe((loading)=>{
+  ) {
+    this.subscription = loadingService.isLoading.subscribe((loading) => {
       this.isLoading = loading
     })
   }
-
+  ////////////////////////////////////////////////////////////////////////
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe()
+    }
+  }
+  ////////////////////////////////////////////////////////////////////////
 }

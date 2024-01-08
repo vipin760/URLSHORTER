@@ -1,8 +1,6 @@
 .container{
-    position: fixed;
     width: 100%;
-    height: 100%;
-    background-color: #ffffffea;
+    height: 100vh;
     z-index: 10000;
     top: 0;
     left: 0;
@@ -12,7 +10,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    background-color: transparent;
+    height: 100%;
     width: 100%;
 }
 img{

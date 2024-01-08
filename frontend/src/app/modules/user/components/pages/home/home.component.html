@@ -2,61 +2,27 @@
     Create Short URL
 </div>
 <div class="col-md-12 text-center p-5 mt-4">
-<div class="row d-flex justify-content-center">
-    <form class="col-md-6 p-4 shadow-lg rounded-3" [formGroup]="urlForm" (ngSubmit)="submit()" >
-        <div class="col-md-12 text-dark text-shadow p-3">
-            <label for="" class="sr-only">Shrink Large Url</label>
-        </div>
-        <div class="col-md-12 text-light">
-            <input type="text" formControlName="urlFull" id="fullUrl" class="form-control">
-            <span class="error-list" *ngIf="fc['urlFull'].errors && isSubmitted">
-                <p *ngIf="fc['urlFull'].errors['required']" class="text-danger" >*invalid</p>
-                <p *ngIf="fc['urlFull'].errors['minlength']" class="text-danger">*select url atleast large</p>
-            </span>
-        </div>
-        <div class="col-md-12text-light mt-2 mb-3">
-            <button mat-raised-button type="submit" >Shrink</button>
-        </div>
-        <div class="col-md-12 text-dark mt-5" *ngIf="shortUrl">
-            <a (click)="urlSubmit(shortUrl)">{{shortUrl}}</a><button class="ms-3"
-            mat-raised-button color="primar"
-            [cdkCopyToClipboard]="shortUrl"
-            >Copy</button>
-        </div>
-    </form>
-
-
-</div>
-</div>
-
-
-
-
-
-
-
-<!-- <div class="contianer text-center col-md-12 d-flex justify-content-center">
-    <div class="col-md-6">
-        <form [formGroup]="urlForm" class="row col-md-12 form-inline" (ngSubmit)="submit()">
-            <h1>URL Shrinker</h1>
-            <div class="bg-warning col-md-12 col-lg-8">
-                <label for="" class="sr-only">URL</label>
-            <input type="text" formControlName="urlFull" id="fullUrl" class="form-control">
-            <span class="error-list" *ngIf="fc['urlFull'].errors && isSubmitted">
-                <p *ngIf="fc['urlFull'].errors['required']" class="text-danger" >*invalid</p>
-                <p *ngIf="fc['urlFull'].errors['minlength']" class="text-danger">*select url atleast large</p>
-            </span>
+    <div class="row d-flex justify-content-center">
+        <form class="col-md-6 p-4 shadow-lg rounded-3" [formGroup]="urlForm" (ngSubmit)="submit()">
+            <div class="col-md-12 text-dark text-shadow p-3">
+                <label for="" class="sr-only">Shrink Large Url</label>
             </div>
-            <div class="col-md-12 col-lg-4">
-                <button mat-raised-button type="submit" >Shrink</button>
+            <div class="col-md-12 text-light">
+                <input type="text" formControlName="urlFull" id="fullUrl" class="form-control">
+                <span class="error-list" *ngIf="fc['urlFull'].errors && isSubmitted">
+                    <p *ngIf="fc['urlFull'].errors['required']" class="text-danger">*invalid</p>
+                    <p *ngIf="fc['urlFull'].errors['minlength']" class="text-danger">*select url atleast large</p>
+                </span>
+            </div>
+            <div class="col-md-12 text-light mt-2 mb-3">
+                <button mat-raised-button type="submit">Shrink</button>
+            </div>
+            <div class="col-md-12 text-dark mt-5" *ngIf="shortUrl">
+                <a (click)="urlSubmit(shortUrl)">{{shortUrl}}</a><button class="ms-3" mat-raised-button color="primar"
+                    [cdkCopyToClipboard]="shortUrl">Copy</button>
             </div>
         </form>
-        <div class="row" *ngIf="shortUrl">
-                <a (click)="urlSubmit(shortUrl)">{{shortUrl}}</a> 
-            <button
-            mat-raised-button color="primar"
-            [cdkCopyToClipboard]="shortUrl"
-            >Copy</button>
-        </div>
+
+
     </div>
-   </div> -->
+</div>

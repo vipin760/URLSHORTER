@@ -12,56 +12,55 @@ import { USER_KEY } from '../shared/constants/key';
 export class UserService {
 
   private UserSubject = new BehaviorSubject<string>(this.getUserFromLocalStorage())
-  public UserObservable!:Observable<string>;
+  public UserObservable!: Observable<string>;
   constructor(
-    private Http:HttpClient,
-    private toastrService:ToastrService
-  ) { 
-    this.UserObservable = this.UserSubject.asObservable() 
+    private Http: HttpClient,
+    private toastrService: ToastrService
+  ) {
+    this.UserObservable = this.UserSubject.asObservable()
   }
-/////////////////////////////////////////////////////////// 
-  login(userData:ILoginUser):Observable<ILoginResonse>{
-    return this.Http.post<ILoginResonse>(`${USER_BASE_URI}/login`,userData).pipe(
-      tap(data=>{
+  /////////////////////////////////////////////////////////// 
+  login(userData: ILoginUser): Observable<ILoginResonse> {
+    return this.Http.post<ILoginResonse>(`${USER_BASE_URI}/login`, userData).pipe(
+      tap(data => {
         this.setUserFromLocalStorge(data)
         this.UserSubject.next(data.data)
       })
     )
   }
-///////////////////////////////////////////////////////////
-  register(userData:IRegisterUser):Observable<IRegisterResponse>{
-   return this.Http.post<IRegisterResponse>(`${USER_BASE_URI}/register`,userData)
+  ///////////////////////////////////////////////////////////
+  register(userData: IRegisterUser): Observable<IRegisterResponse> {
+    return this.Http.post<IRegisterResponse>(`${USER_BASE_URI}/register`, userData)
   }
 
-///////////////////////////////////////////////////////////  
-private setUserFromLocalStorge(UserData:ILoginResonse){
- localStorage.setItem(USER_KEY,JSON.stringify(UserData.data)) 
-}
-///////////////////////////////////////////////////////////  
-private getUserFromLocalStorage():string{
- const token = localStorage.getItem(USER_KEY)
- if(token){
-  return token
- }else{
-  return ''
- }
-}
-/////////////////////////////////////////////////////////// 
-logout(){
-  this.UserSubject.next('')
-  localStorage.removeItem(USER_KEY)
-  window.location.reload()
-} 
-///////////////////////////////////////////////////////////  
-urlShort(urlData:IUrlData):Observable<IUrlShortResponse>{
-  
- return this.Http.post<IUrlShortResponse>(`${USER_BASE_URI}/urlshort`,urlData)
-}
-///////////////////////////////////////////////////////////
-fetchUrl(urlData:string):Observable<IFetchUrlResponse>{
- return this.Http.get<IFetchUrlResponse>(`${USER_BASE_URI}/fetchUrl/${urlData}`)
-}
-///////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////  
+  private setUserFromLocalStorge(UserData: ILoginResonse) {
+    localStorage.setItem(USER_KEY, JSON.stringify(UserData.data))
+  }
+  ///////////////////////////////////////////////////////////  
+  private getUserFromLocalStorage(): string {
+    const token = localStorage.getItem(USER_KEY)
+    if (token) {
+      return token
+    } else {
+      return ''
+    }
+  }
+  /////////////////////////////////////////////////////////// 
+  logout() {
+    this.UserSubject.next('')
+    localStorage.removeItem(USER_KEY)
+    window.location.reload()
+  }
+  ///////////////////////////////////////////////////////////  
+  urlShort(urlData: IUrlData): Observable<IUrlShortResponse> {
 
-///////////////////////////////////////////////////////////
+    return this.Http.post<IUrlShortResponse>(`${USER_BASE_URI}/urlshort`, urlData)
+  }
+  ///////////////////////////////////////////////////////////
+  fetchUrl(urlData: string): Observable<IFetchUrlResponse> {
+    return this.Http.get<IFetchUrlResponse>(`${USER_BASE_URI}/fetchUrl/${urlData}`)
+  }
+  ///////////////////////////////////////////////////////////
+
 }

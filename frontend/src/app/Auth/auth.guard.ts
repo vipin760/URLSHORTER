@@ -7,7 +7,7 @@ import { USER_KEY } from '../shared/constants/key';
 })
 export class userGuard implements CanActivate {
   constructor(private router: Router) {}
-
+////////////////////////////////////////////////////////////////////////
   canActivate(): boolean {
     const token = localStorage.getItem(USER_KEY);
     if (token) {
@@ -17,4 +17,5 @@ export class userGuard implements CanActivate {
       return false;
     }
   }
+////////////////////////////////////////////////////////////////////////
 }

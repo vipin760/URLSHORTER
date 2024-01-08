@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { FooterComponent } from './components/partials/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InputContainerComponent } from './components/partials/input-container/input-container.component';
@@ -22,7 +21,6 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    FooterComponent,
     InputContainerComponent,
     InputValidatorComponent,
     NotFoundComponent,
@@ -40,11 +38,11 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
       newestOnTop: false
     })
   ],
-  exports:[InputContainerComponent,InputValidatorComponent],
+  exports: [InputContainerComponent, InputValidatorComponent],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:UserTokenInterceptorService,multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass:HttpErrorInterceptorService,multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass: LoadingInterceptor,multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: UserTokenInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

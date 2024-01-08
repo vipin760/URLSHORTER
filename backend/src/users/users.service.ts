@@ -1,6 +1,5 @@
-import { HttpException, HttpStatus, Injectable, Res } from '@nestjs/common';
-import { CreateUrlDto, CreateUserDto, CreateUserLoginDto, ListUrl, ListUrlResponse } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CreateUrlDto, CreateUserDto, CreateUserLoginDto, ListUrlResponse } from './dto/create-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
@@ -53,7 +52,7 @@ export class UsersService {
     }
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  async urlShort(createUrlDto: CreateUrlDto):Promise<ListUrlResponse>{
+  async urlShort(createUrlDto: CreateUrlDto): Promise<ListUrlResponse> {
     try {
       const urlExist = await this.prisma.Url.findFirst({ where: { full: createUrlDto.urlFull } })
       if (urlExist) {
@@ -72,34 +71,15 @@ export class UsersService {
     }
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////////
- async fetchUrl(FetchUrlDto:string):Promise<ListUrlResponse>{
-  try {
-    console.log(FetchUrlDto);
-    const urlData = await this.prisma.Url.findFirst({where:{short:FetchUrlDto}})
-    console.log(urlData);
-    if(urlData){
-      return {status:true, data:urlData, message:"fetch data successfully", statusCode: HttpStatus.OK}
+  async fetchUrl(FetchUrlDto: string): Promise<ListUrlResponse> {
+    try {
+      const urlData = await this.prisma.Url.findFirst({ where: { short: FetchUrlDto } })
+      if (urlData) {
+        return { status: true, data: urlData, message: "fetch data successfully", statusCode: HttpStatus.OK }
+      }
+    } catch (error) {
+      throw new HttpException({ status: false, data: null, message: 'Internal server down' }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-  } catch (error) {
-    throw new HttpException({ status: false,data:null, message: 'Internal server down' }, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
-  findAll() {
-    return `This action returns all users`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
