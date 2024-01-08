@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.toastrService.success(`${data.message}`,"Success")
         this.router.navigate(['home'])
       }else{
-        this.toastrService.success(`${data.message}`,"Failed")
+        this.toastrService.error(`${data.message}`,"Failed")
       }
     })
     

@@ -13,6 +13,9 @@ import { InputValidatorComponent } from './components/partials/input-validator/i
 import { ToastrModule } from 'ngx-toastr';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { UserTokenInterceptorService } from './interceptors/user.interceptors';
+import { HttpErrorInterceptorService } from './interceptors/errorHttp.interceptor';
+import { LoadingComponent } from './components/pages/loading/loading.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { UserTokenInterceptorService } from './interceptors/user.interceptors';
     FooterComponent,
     InputContainerComponent,
     InputValidatorComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { UserTokenInterceptorService } from './interceptors/user.interceptors';
   ],
   exports:[InputContainerComponent,InputValidatorComponent],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:UserTokenInterceptorService,multi:true}
+    {provide:HTTP_INTERCEPTORS, useClass:UserTokenInterceptorService,multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass:HttpErrorInterceptorService,multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass: LoadingInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })
